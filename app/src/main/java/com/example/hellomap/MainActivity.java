@@ -2,8 +2,11 @@ package com.example.hellomap;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -30,8 +33,12 @@ Beacon beacon1= new Beacon(43.587000,13.587000 );
         setContentView(R.layout.main);
         setUpMapIfNeeded();
 
+        LatLng ANCONA =new LatLng(43.586807, 13.516488);
+        CameraPosition camera =new CameraPosition.Builder().target(ANCONA).zoom(15).build();
+
         GoogleMap map;
         map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+        map.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(43.586807, 13.516488))
                 .title("UNIVPM"));
